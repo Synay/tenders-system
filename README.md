@@ -1,3 +1,4 @@
+```bash
 # Mini Sistema de Gestión de Licitaciones Internas
 
 Este proyecto contiene **backend en Node.js + Supabase** y **frontend en Angular 20 Standalone + Angular Material** para gestionar licitaciones públicas, productos y órdenes.
@@ -20,7 +21,6 @@ backend/
 
 1. Navega a la carpeta del backend:
 
-```bash
 cd backend
 
     Instala las dependencias:

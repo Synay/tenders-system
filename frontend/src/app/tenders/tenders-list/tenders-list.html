@@ -1,0 +1,38 @@
+<h2>Licitaciones</h2>
+
+<table mat-table [dataSource]="tenders" class="mat-elevation-z8">
+
+  <!-- ID -->
+  <ng-container matColumnDef="tender_id">
+    <th mat-header-cell *matHeaderCellDef>ID</th>
+    <td mat-cell *matCellDef="let t">
+      <a [routerLink]="['/tender', t.tender_id]">{{ t.tender_id }}</a>
+    </td>
+  </ng-container>
+
+  <!-- Cliente -->
+  <ng-container matColumnDef="cliente">
+    <th mat-header-cell *matHeaderCellDef>Cliente</th>
+    <td mat-cell *matCellDef="let t">{{ t.nombre_cliente }}</td>
+  </ng-container>
+
+  <!-- Fecha -->
+  <ng-container matColumnDef="fecha">
+    <th mat-header-cell *matHeaderCellDef>Fecha</th>
+    <td mat-cell *matCellDef="let t">
+      {{ t.fecha_adjudicacion | date:'fullDate':'':'es-CL' }}
+    </td>
+  </ng-container>
+
+  <!-- Margen -->
+  <ng-container matColumnDef="margen_total">
+    <th mat-header-cell *matHeaderCellDef>Margen</th>
+    <td mat-cell *matCellDef="let t">
+      {{ t.margen_total | currency:'CLP':'symbol':'1.0-0':'es-CL' }}
+    </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+</table>

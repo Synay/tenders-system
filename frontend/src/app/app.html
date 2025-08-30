@@ -1,0 +1,18 @@
+<mat-toolbar color="primary">
+  <span>Licitaciones</span>
+  <span class="spacer"></span>
+  <a mat-button routerLink="/">Licitaciones</a>
+  <a mat-button routerLink="/products">Productos</a>
+</mat-toolbar>
+<div class="container">
+  <router-outlet></router-outlet>
+</div>
+<style>
+  .spacer {
+    flex: 1 1 auto;
+  }
+
+  .container {
+    padding: 16px;
+  }
+</style>

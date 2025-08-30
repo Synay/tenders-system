@@ -1,0 +1,101 @@
+<mat-card *ngIf="tender; else loadingTpl">
+  <mat-card-header>
+    <mat-card-title>
+      Licitación {{ tender.id }} — {{ tender.nombre_cliente }}
+    </mat-card-title>
+    <mat-card-subtitle>
+      Fecha: {{ tender.fecha_adjudicacion | date:'dd/MM/yyyy':'':'es-CL' }}
+    </mat-card-subtitle>
+  </mat-card-header>
+
+  <mat-card-content>
+    <h3>Detalle de productos</h3>
+    <table mat-table [dataSource]="detalle" class="mat-elevation-z1">
+
+      <ng-container matColumnDef="product_sku">
+        <th mat-header-cell *matHeaderCellDef>SKU</th>
+        <td mat-cell *matCellDef="let r">{{ r.product_sku }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="nombre">
+        <th mat-header-cell *matHeaderCellDef>Producto</th>
+        <td mat-cell *matCellDef="let r">{{ r.nombre }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="cantidad">
+        <th mat-header-cell *matHeaderCellDef>Cant.</th>
+        <td mat-cell *matCellDef="let r">{{ r.cantidad }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="precio_unitario">
+        <th mat-header-cell *matHeaderCellDef>Precio U.</th>
+        <td mat-cell *matCellDef="let r">
+          {{ r.precio_unitario | currency:'CLP':'symbol':'1.0-0':'es-CL' }}
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="costo_unitario">
+        <th mat-header-cell *matHeaderCellDef>Costo U.</th>
+        <td mat-cell *matCellDef="let r">
+          {{ r.costo_unitario | currency:'CLP':'symbol':'1.0-0':'es-CL' }}
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="margen_unitario">
+        <th mat-header-cell *matHeaderCellDef>Margen U.</th>
+        <td mat-cell *matCellDef="let r">
+          {{ r.margen_unitario | currency:'CLP':'symbol':'1.0-0':'es-CL' }}
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="margen_total">
+        <th mat-header-cell *matHeaderCellDef>Margen Total</th>
+        <td mat-cell *matCellDef="let r">
+          {{ r.margen_total | currency:'CLP':'symbol':'1.0-0':'es-CL' }}
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+
+    <div class="margen-resumen" style="margin-top: 16px;">
+      <h4>Margen total: {{ margenTotal | currency:'CLP':'symbol':'1.0-0':'es-CL' }}</h4>
+    </div>
+
+    <mat-divider style="margin: 16px 0;"></mat-divider>
+
+    <h3>Agregar producto</h3>
+    <form [formGroup]="addForm" (ngSubmit)="onAddOrder()" class="add-form" style="display: flex; gap: 16px; flex-wrap: wrap; align-items: flex-end;">
+      
+      <mat-form-field appearance="outline" style="flex: 1 1 200px;">
+        <mat-label>Producto</mat-label>
+        <mat-select formControlName="product_sku">
+          <mat-option *ngFor="let p of products" [value]="p.sku">
+            {{ p.sku }} — {{ p.nombre }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" style="width: 120px;">
+        <mat-label>Cantidad</mat-label>
+        <input matInput type="number" formControlName="cantidad">
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" style="width: 160px;">
+        <mat-label>Precio unitario</mat-label>
+        <input matInput type="number" formControlName="precio_unitario" step="0.01">
+      </mat-form-field>
+
+      <button mat-raised-button color="primary" type="submit">Agregar</button>
+    </form>
+  </mat-card-content>
+</mat-card>
+
+<ng-template #loadingTpl>
+  <mat-card>
+    <mat-card-content>
+      <p>Cargando...</p>
+    </mat-card-content>
+  </mat-card>
+</ng-template>

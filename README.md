@@ -1,4 +1,4 @@
-```bash
+
 # Mini Sistema de Gestión de Licitaciones Internas
 
 Este proyecto contiene **backend en Node.js + Supabase** y **frontend en Angular 20 Standalone + Angular Material** para gestionar licitaciones públicas, productos y órdenes.
@@ -6,7 +6,7 @@ Este proyecto contiene **backend en Node.js + Supabase** y **frontend en Angular
 ## Backend (Node.js + Supabase)
 
 ### Estructura
-
+```
 backend/
 ├── index.js
 ├── routes/
@@ -15,36 +15,36 @@ backend/
 │ └── orders.js
 └── services/
 └── supabaseClient.js
-
+```
 
 ### Instalación
 
-1. Navega a la carpeta del backend:
-
+Navega a la carpeta del backend:
+```
 cd backend
-
-    Instala las dependencias:
-
+```
+Instala las dependencias:
+```
 npm install
-
-Configuración
+```
+### Configuración
 
 Crea un archivo .env en la raíz del proyecto y agrega las credenciales de Supabase:
-
+```
 SUPABASE_URL=<tu_url_supabase>
 SUPABASE_KEY=<tu_anon_or_service_key>
 PORT=4000
+```
+### Ejecutar
 
-Ejecutar
-
-    Para iniciar el servidor:
-
+Para iniciar el servidor:
+```
 node index.js
-
-    O para usar nodemon y evitar reinicios manuales:
-
+```
+O para usar nodemon y evitar reinicios manuales:
+```
 npx nodemon index.js
-
+```
 Endpoints de ejemplo
 
     GET /api/tenders – Lista de licitaciones.
@@ -59,9 +59,10 @@ Endpoints de ejemplo
 
     POST /api/orders – Crear orden.
 
-Frontend (Angular 20 Standalone + Angular Material)
-Estructura
+## Frontend (Angular 20 Standalone + Angular Material)
 
+### Estructura
+```
 frontend/
 ├── src/app/
 │   ├── app.ts
@@ -74,56 +75,47 @@ frontend/
 │       ├── products-list.ts
 │       └── products-form.ts
 └── main.ts
+```
 
-Instalación
+### Instalación
 
-    Navega a la carpeta del frontend:
-
+Navega a la carpeta del frontend:
+```
 cd frontend
-
-    Instala las dependencias:
-
+```
+Instala las dependencias:
+```
 npm install
+```
 
-Ejecutar
+### Ejecutar
 
-    Para iniciar el servidor de desarrollo:
-
+Para iniciar el servidor de desarrollo:
+```
 ng serve -o
+```
+El frontend se conecta al backend en http://localhost:4000/api. Si tu backend corre en otra URL, ajusta ApiService.base.
 
-    El frontend se conecta al backend en http://localhost:4000/api. Si tu backend corre en otra URL, ajusta ApiService.base.
+### Componentes
 
-Componentes
-TendersListComponent
+```TendersListComponent``` – Listado de licitaciones.
 
-    Listado de licitaciones.
+```TenderDetailComponent``` – Detalle de licitación y agregar productos.
 
-TenderDetailComponent
+```ProductListComponent``` – Listado de productos.
 
-    Detalle de licitación y agregar productos.
-
-ProductListComponent
-
-    Listado de productos.
-
-ProductFormComponent
-
-    Formulario para crear producto.
+```ProductFormComponent``` – Formulario para crear producto.
 
 Características
 
-    Angular Standalone (sin NgModules).
+- Angular Standalone (sin NgModules).
 
-    Angular Material UI.
+- Angular Material UI.
 
-    Reactive Forms para formularios.
+- Reactive Forms para formularios.
 
-    Validaciones:
+- Validaciones: Precio > Costo.
 
-        Precio > Costo.
-
-        Cantidad mínima de 1.
-
-    Cálculo de márgenes:
-
-        Margen unitario y total.
+- Cantidad mínima de 1.
+  
+- Cálculo de margen unitario y total.

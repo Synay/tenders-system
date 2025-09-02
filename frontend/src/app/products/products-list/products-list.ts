@@ -4,11 +4,12 @@ import { ApiService } from '../../../core/api.service';
 import { MATERIAL_IMPORTS } from '../../../shared/material';
 import { ProductFormComponent } from '../products-form/products-form';
 import { MatTableDataSource } from '@angular/material/table';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-products-list',
   standalone: true,
-  imports: [CommonModule, ...MATERIAL_IMPORTS, ProductFormComponent],
+  imports: [CommonModule, RouterModule, ...MATERIAL_IMPORTS, ProductFormComponent],
   templateUrl: './products-list.html'
 })
 export class ProductListComponent implements OnInit {

@@ -8,6 +8,7 @@ const tendersRouter = require('./src/routes/tenders');
 const productsRouter = require('./src/routes/products');
 const ordersRouter = require('./src/routes/orders');
 const app = express();
+const path = require('path');
 
 app.use(cors());
 app.use(bodyParser.json());
